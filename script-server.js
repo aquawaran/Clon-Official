@@ -14,7 +14,7 @@ const app = {
 const API_URL = window.location.origin + '/api';
 
 // ID создателя - ИЗМЕНИТЕ ЭТОТ ID ПЕРЕД ДЕПЛОЕМ
-const CREATOR_ID = '4798654566'; // <-- ЗАМЕНИТЕ НА СВОЙ ID
+const CREATOR_ID = '1691051062'; // <-- ЗАМЕНИТЕ НА СВОЙ ID
 
 // Генерация ID пользователя
 function generateUserId() {
