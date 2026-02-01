@@ -20,7 +20,7 @@ function generateUserId() {
     return Math.floor(1000000000 + Math.random() * 9000000000).toString();
 }
 
-const CREATOR_ID = process.env.CREATOR_ID || '4798654566';
+const CREATOR_ID = process.env.CREATOR_ID || '1761560316';
 
 // Middleware для проверки прав создателя
 const checkCreator = async (req, res, next) => {
