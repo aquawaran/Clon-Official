@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clone - Социальная сеть</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👥</text></svg>">
+</head>
+<body>
+    <div class="app">
+        <!-- Экран аутентификации -->
+        <div id="authScreen" class="screen active">
+            <div class="auth-container">
+                <div class="auth-header">
+                    <h1>👥 Clone</h1>
+                    <p>Социальная сеть нового поколения</p>
+                </div>
+                
+                <div class="auth-forms">
+                    <!-- Форма входа -->
+                    <div id="loginForm" class="auth-form active">
+                        <h2>Вход</h2>
+                        <form id="loginFormElement">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" id="loginEmail" required placeholder="your@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Пароль</label>
+                                <input type="password" id="loginPassword" required placeholder="••••••••">
+                            </div>
+                            <button type="submit" class="btn-primary">Войти</button>
+                        </form>
+                        <p class="auth-switch">
+                            Нет аккаунта? <a href="#" id="switchToRegister">Зарегистрироваться</a>
+                        </p>
+                    </div>
+                    
+                    <!-- Форма регистрации -->
+                    <div id="registerForm" class="auth-form">
+                        <h2>Регистрация</h2>
+                        <form id="registerFormElement">
+                            <div class="form-group">
+                                <label>Имя</label>
+                                <input type="text" id="registerName" required placeholder="Ваше имя">
+                            </div>
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" id="registerUsername" required placeholder="@username">
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" id="registerEmail" required placeholder="your@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Пароль</label>
+                                <input type="password" id="registerPassword" required placeholder="••••••••">
+                            </div>
+                            <button type="submit" class="btn-primary">Зарегистрироваться</button>
+                        </form>
+                        <p class="auth-switch">
+                            Уже есть аккаунт? <a href="#" id="switchToLogin">Войти</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Главный экран приложения -->
+        <div id="mainApp" class="main-app">
+            <!-- Боковая панель -->
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <h1>👥 Clone</h1>
+                    <button id="themeToggle" class="theme-toggle">🌙</button>
+                </div>
+                
+                <nav class="sidebar-nav">
+                    <button id="feedBtn" class="nav-btn active">
+                        <span class="nav-icon">🏠</span>
+                        <span>Лента</span>
+                    </button>
+                    <button id="profileBtn" class="nav-btn">
+                        <span class="nav-icon">👤</span>
+                        <span>Профиль</span>
+                    </button>
+                    <button id="notificationsBtn" class="nav-btn">
+                        <span class="nav-icon">🔔</span>
+                        <span>Уведомления</span>
+                    </button>
+                </nav>
+                
+                <div class="sidebar-footer">
+                    <div class="user-info">
+                        <div class="user-avatar" id="sidebarUserAvatar">?</div>
+                        <div class="user-details">
+                            <div class="user-name" id="sidebarUserName">Загрузка...</div>
+                            <div class="user-username" id="sidebarUserUsername">@username</div>
+                        </div>
+                    </div>
+                    <button id="logoutBtn" class="btn-logout">Выйти</button>
+                </div>
+            </div>
+            
+            <!-- Основной контент -->
+            <div class="main-content">
+                <!-- Экран ленты -->
+                <div id="feedScreen" class="screen active">
+                    <div class="feed-header">
+                        <h2>Лента</h2>
+                        <div class="search-container">
+                            <input type="text" id="searchInput" placeholder="Поиск пользователей...">
+                            <div id="searchResults" class="search-results"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Создание поста -->
+                    <div class="create-post">
+                        <div class="create-post-header">
+                            <div class="user-avatar" id="createPostAvatar">?</div>
+                            <textarea id="postContent" placeholder="Что у вас нового?" rows="3"></textarea>
+                        </div>
+                        <div class="create-post-actions">
+                            <input type="file" id="mediaInput" accept="image/*,video/*" multiple style="display: none;">
+                            <button id="attachMediaBtn" class="btn-secondary">📎 Медиа</button>
+                            <button id="publishPostBtn" class="btn-primary">Опубликовать</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Лента постов -->
+                    <div id="postsContainer" class="posts-container">
+                        <!-- Посты будут добавлены динамически -->
+                    </div>
+                </div>
+                
+                <!-- Экран профиля -->
+                <div id="profileScreen" class="screen">
+                    <div class="profile-header">
+                        <div class="profile-avatar" id="profileAvatar">?</div>
+                        <div class="profile-info">
+                            <h2 id="profileName">Имя пользователя</h2>
+                            <p id="profileUsername">@username</p>
+                            <p id="profileBio">О себе</p>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-actions">
+                        <button id="editProfileBtn" class="btn-secondary">✏️ Редактировать профиль</button>
+                    </div>
+                    
+                    <!-- Форма редактирования профиля -->
+                    <div id="editProfileForm" class="edit-profile-form" style="display: none;">
+                        <h3>Редактировать профиль</h3>
+                        <div class="form-group">
+                            <label>Имя</label>
+                            <input type="text" id="profileNameInput" placeholder="Ваше имя">
+                        </div>
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" id="profileUsernameInput" placeholder="@username">
+                        </div>
+                        <div class="form-group">
+                            <label>О себе</label>
+                            <textarea id="profileBioInput" placeholder="Расскажите о себе" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Аватар</label>
+                            <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+                            <button id="updateAvatarBtn" class="btn-secondary">📷 Обновить аватар</button>
+                        </div>
+                        <div class="form-actions">
+                            <button id="updateProfileBtn" class="btn-primary">Сохранить</button>
+                            <button id="cancelEditBtn" class="btn-secondary">Отмена</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Посты пользователя -->
+                    <div class="profile-posts">
+                        <h3>Посты</h3>
+                        <div id="profilePostsContainer" class="posts-container">
+                            <!-- Посты пользователя будут добавлены динамически -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Модальное окно уведомлений -->
+        <div id="notificationsModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Уведомления</h3>
+                    <button class="modal-close" onclick="this.closest('.modal').classList.remove('active')">×</button>
+                </div>
+                <div id="notificationsContainer" class="notifications-container">
+                    <!-- Уведомления будут добавлены динамически -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script-server.js"></script>
+</body>
+</html>
